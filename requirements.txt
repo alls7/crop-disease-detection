@@ -1,0 +1,2 @@
+# Python dependencies for crop disease detection project
+# TODO: Add specific package versions
