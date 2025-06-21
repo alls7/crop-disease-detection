@@ -1,2 +1,128 @@
-# Python dependencies for crop disease detection project
-# TODO: Add specific package versions
+# ============================================================================
+# Crop Disease Detection: ViT vs CNN Comparison
+# Google Colab Optimized Requirements
+# Author: Ali SU - Hacettepe University
+# Course: CMP 719A Computer Vision
+# ============================================================================
+
+# NOTE: Many packages are pre-installed in Colab. This file includes only
+# the additional packages needed or version upgrades for optimal performance.
+
+# ============================================================================
+# CORE DEEP LEARNING FRAMEWORKS
+# ============================================================================
+
+# PyTorch ecosystem (ensure latest compatible versions)
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Pre-trained model hub (essential for this project)
+timm>=0.9.0
+
+# ============================================================================
+# COMPUTER VISION AND DATA AUGMENTATION
+# ============================================================================
+
+# Advanced data augmentation library
+albumentations>=1.3.0
+
+# ============================================================================
+# CONFIGURATION AND UTILITIES
+# ============================================================================
+
+# Configuration file management
+pyyaml>=6.0
+
+# Enhanced progress bars and utilities
+tqdm>=4.65.0
+
+# ============================================================================
+# EXPERIMENT TRACKING AND MONITORING
+# ============================================================================
+
+# Weights & Biases for experiment tracking (optional but recommended)
+wandb>=0.15.0
+
+# GPU monitoring and system information
+nvidia-ml-py3>=7.352.0
+
+# System resource monitoring
+psutil>=5.9.0
+
+# ============================================================================
+# DATA MANAGEMENT
+# ============================================================================
+
+# Kaggle API for dataset download
+kaggle>=1.5.0
+
+# ============================================================================
+# DEVELOPMENT AND ANALYSIS
+# ============================================================================
+
+# Statistical analysis beyond sklearn
+statsmodels>=0.14.0
+
+# Memory profiling for optimization
+memory-profiler>=0.60.0
+
+# ============================================================================
+# NOTES ON PRE-INSTALLED PACKAGES IN COLAB
+# ============================================================================
+
+# The following packages are typically pre-installed in Google Colab
+# and do not need to be included in requirements.txt:
+#
+# Data Science Stack:
+# - numpy>=1.21.0
+# - pandas>=1.3.0
+# - scipy>=1.7.0
+# - scikit-learn>=1.0.0
+#
+# Visualization:
+# - matplotlib>=3.2.0
+# - seaborn>=0.11.0
+# - plotly>=5.0.0
+#
+# Image Processing:
+# - Pillow>=8.0.0
+# - opencv-python>=4.5.0
+#
+# Jupyter Environment:
+# - jupyter>=1.0.0
+# - notebook>=6.4.0
+# - ipywidgets>=7.6.0
+#
+# Logging and Monitoring:
+# - tensorboard>=2.8.0
+#
+# If you encounter version conflicts, you can explicitly install
+# specific versions by uncommenting and modifying the lines below:
+
+# Explicit version control (uncomment if needed)
+# numpy==1.24.3
+# pandas==2.0.3
+# matplotlib==3.7.2
+# scikit-learn==1.3.0
+
+# ============================================================================
+# INSTALLATION INSTRUCTIONS FOR COLAB
+# ============================================================================
+
+# To install these requirements in Google Colab, run:
+# !pip install -q -r requirements.txt
+
+# For faster installation, use quiet mode (-q) and upgrade pip first:
+# !pip install --upgrade pip
+# !pip install -q -r requirements.txt
+
+# ============================================================================
+# MEMORY OPTIMIZATION TIPS FOR COLAB
+# ============================================================================
+
+# 1. Use mixed precision training: torch.cuda.amp
+# 2. Reduce batch size if out of memory
+# 3. Use gradient accumulation for effective larger batch sizes
+# 4. Clear cache between model training: torch.cuda.empty_cache()
+# 5. Use checkpointing to save progress every few epochs
