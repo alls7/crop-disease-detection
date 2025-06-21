@@ -188,7 +188,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Ali SU - alisu@hacettepe.edu.tr
 
-Project Link: 
+Project Link: https://github.com/alls7/crop-disease-detection
 
 ---
 
