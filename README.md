@@ -4,192 +4,58 @@
 [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0-red.svg)](https://pytorch.org/)
 
-## Overview
-
-This repository contains the implementation for comparing Vision Transformers (ViTs) and Convolutional Neural Networks (CNNs) for crop disease detection using the PlantVillage dataset.
-
-**Author**: Ali SU  
-**Institution**: Hacettepe University  
-**Course**: CMP 719A Computer Vision  
-
-## Project Description
-
-This project conducts a comprehensive comparison between Vision Transformers and Convolutional Neural Networks for crop disease detection, focusing on:
-
-- 🎯 Classification accuracy
-- ⚡ Computational efficiency
-- 🛡️ Model robustness
-- 🚀 Deployment considerations
-
-## Repository Structure
-
-```
-crop-disease-detection/
-├── README.md
-├── requirements.txt
-├── .gitignore
-├── LICENSE
-├── config/
-│   ├── .gitkeep
-│   └── config.yaml
-├── data/
-│   ├── .gitkeep
-│   └── download_data.py
-├── models/
-│   ├── __init__.py
-│   ├── cnn_models.py
-│   └── vit_models.py
-├── training/
-│   ├── __init__.py
-│   └── trainer.py
-├── evaluation/
-│   ├── __init__.py
-│   └── evaluator.py
-├── utils/
-│   ├── __init__.py
-│   └── helpers.py
-├── experiments/
-│   ├── run_experiments.py
-│   └── compare_models.py
-├── notebooks/
-│   ├── data_exploration.ipynb
-│   ├── model_comparison.ipynb
-│   └── results_analysis.ipynb
-└── results/
-    ├── models/
-    ├── plots/
-    └── logs/
-```
-
-## Models to be Compared
-
-### CNN Models
-- **ResNet-50**: Deep residual network with skip connections
-- **EfficientNet-B0**: Compound-scaled CNN optimizing depth, width, and resolution
-
-### Vision Transformer Models
-- **ViT-B/16**: Base Vision Transformer with 16×16 patch size
-- **DeiT-Small**: Data-efficient transformer with knowledge distillation
-
-## Dataset
-
-**PlantVillage Dataset**
-- 54,303 images across 38 classes
-- Various plant species and associated diseases
-- Publicly available for research purposes
-
-## Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/alls7/crop-disease-detection.git
-cd crop-disease-detection
-```
-
-2. Create virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# or
-venv\Scripts\activate     # Windows
-```
-
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-## Quick Start
-
-### Download Dataset
-```bash
-python data/download_data.py
-```
-
-### Train CNN Models
-```bash
-python experiments/run_experiments.py --model resnet50
-python experiments/run_experiments.py --model efficientnet_b0
-```
-
-### Train ViT Models
-```bash
-python experiments/run_experiments.py --model vit_base_patch16_224
-python experiments/run_experiments.py --model deit_small_patch16_224
-```
-
-### Compare Results
-```bash
-python experiments/compare_models.py
-```
-
-## Results Summary
-
-| Model | Accuracy (%) | Parameters (M) | Inference Time (ms) | Model Size (MB) |
-|-------|-------------|----------------|-------------------|-----------------|
-| ResNet-50 | TBD | 25.6 | TBD | 97.8 |
-| EfficientNet-B0 | TBD | 5.3 | TBD | 20.1 |
-| ViT-B/16 | TBD | 86.6 | TBD | 330.3 |
-| DeiT-Small | TBD | 22.1 | TBD | 84.2 |
-
-*Results will be updated after completing experiments*
-
-## Evaluation Metrics
-
-- Classification Accuracy
-- Precision, Recall, F1-Score (per class and macro-averaged)
-- Confusion Matrix
-- Inference Time
-- Model Parameters and Size
-- Training Time
-
-## Project Status
-
-🚧 **Project in Development** 🚧
-
-- [x] Repository structure created
-- [x] Basic file templates
-- [ ] Model implementations
-- [ ] Data preprocessing pipeline
-- [ ] Training scripts
-- [ ] Evaluation utilities
-- [ ] Experiment execution
-- [ ] Results analysis
-- [ ] Final report
-
-## Configuration
-
-Modify `config/config.yaml` to adjust:
-- Data preprocessing parameters
-- Training hyperparameters
-- Model selection
-- Evaluation settings
-
-## Contributing
-
-This is an academic project for CMP 719A Computer Vision course at Hacettepe University.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Citation
-
-```bibtex
-@article{su2025comparative,
-  title={Comparative Analysis of Vision Transformers and Convolutional Neural Networks for Crop Disease Detection},
-  author={Su, Ali},
-  journal={ICLR},
-  year={2025}
-}
-```
-
-## Contact
-
-Ali SU - alisu@hacettepe.edu.tr
-
-Project Link: https://github.com/alls7/crop-disease-detection
-
----
-
-*Last updated: June 2025*
+Project Overview
+This project explores a comparative analysis of Convolutional Neural Networks (CNNs) and Vision Transformers (ViTs) for plant disease classification. The goal is to detect and classify crop leaf diseases from images by fine-tuning state-of-the-art CNN and ViT models on a plant disease dataset. We leverage transfer learning with pre-trained models (originally trained on ImageNet) and evaluate how classical CNN architectures versus modern transformer-based architectures perform on the same task. All experiments and training are executed using Google Colab, ensuring an easy setup without local installation. In this notebook-based project, we implement two representative CNN models (ResNet-50 and EfficientNet-B0) and two transformer models (ViT-Base/16 and DeiT-Small). Each model is adapted to the plant disease classification problem by replacing its top layer to predict the target classes. We then train each model on the same dataset of plant leaf images and compare their training processes and capabilities. The project is structured in clear steps, including dataset preparation, model creation, training, and evaluation, focusing on best practices like data augmentation and two-phase fine-tuning for transfer learning.
+Dataset
+We use the PlantVillage dataset (Kaggle dataset emmarex/plantdisease), a public collection of plant leaf images spanning 54,303 images across 38 classes of healthy and diseased crops. Each class corresponds to a specific crop species and disease condition (for example, Tomato___Late_blight, Potato___Early_blight, Pepper__bell___healthy, etc.). The images are color photographs of plant leaves in controlled conditions, labeled with the crop type and disease. This rich dataset provides a diverse set of examples for training both CNN and ViT models to recognize different plant diseases. In our Colab environment, the dataset is downloaded directly from Kaggle using the Kaggle API. After downloading the plantdisease.zip file, it is unzipped to reveal a directory (named PlantVillage) that contains subfolders for each of the 38 classes. There is no predefined train/validation/test split in the dataset, so we create a split manually:
+Train/Validation/Test Split: We combine all images, then split the dataset into 70% training, 15% validation, and 15% test sets (using a fixed random seed for reproducibility). This ensures that models are trained on one portion of data and evaluated on unseen images.
+Data Transforms: Before feeding images to the models, we apply preprocessing. All images are resized to 224×224 pixels (the input size required by our models). For the training set, we apply data augmentation techniques to improve generalization: random horizontal and vertical flips, random rotations up to ±20°, slight random scaling/translations (RandomAffine), and color jittering (adjusting brightness, contrast, saturation, hue). These augmentations help the CNNs and ViTs become more robust to variations in leaf appearance. For validation and test sets, we only apply resizing and then convert to tensor.
+Normalization: Finally, we normalize image pixel values using the standard ImageNet mean and standard deviation (mean = [0.485, 0.456, 0.406], std = [0.229, 0.224, 0.225]). This step is important because the pre-trained models expect inputs scaled in the same way as their original training data.
+After preparation, the training set images (with augmentation) are loaded in batches (we use a batch size of 32), and similarly for validation and test sets (without augmentation). This dataset setup in Colab allows the models to be trained and evaluated efficiently on a representative set of plant disease images.
+Google Colab Setup
+This project is designed to run entirely in Google Colab, making it easy for anyone to reproduce without needing to install anything locally. The notebook handles all necessary environment setup and dependencies:
+Python Environment: The Colab notebook uses Python 3 and is configured to use a GPU if available. We strongly recommend using a GPU runtime in Colab (go to Runtime → Change runtime type → Hardware accelerator → GPU) to significantly speed up model training, since CNNs and especially ViTs are computationally intensive.
+Library Installation: At the start of the notebook, we install all required Python packages. This includes PyTorch (for model training and neural network operations), Torchvision (for datasets and transforms), timm (Torchvision Image Models library, which provides pre-trained implementations of many models including EfficientNet and ViT), scikit-learn (for evaluation utilities), and plotting libraries like Matplotlib/Seaborn for any visualizations. These installations are done via pip in the notebook, so no manual installation is needed by the user.
+Kaggle API & Dataset Download: Because the dataset is hosted on Kaggle, the notebook uses the Kaggle API to download it. Colab users need to upload their Kaggle API token (a kaggle.json file obtainable from their Kaggle account) when prompted. The notebook will:
+Install the Kaggle Python package.
+Set up the Kaggle credentials (by copying the provided kaggle.json to the appropriate location in Colab).
+Download the emmarex/plantdisease dataset zip file using !kaggle datasets download.
+Unzip the dataset into the Colab workspace.
+Directory Configuration: Once extracted, the notebook automatically finds the dataset directory and verifies the structure (ensuring it located the PlantVillage folder with class subdirectories). It then constructs the training, validation, and test splits as described above.
+Device Setup: The code checks for GPU availability via torch.cuda.is_available(). If a GPU is present, it sets device = 'cuda' and prints the GPU model (e.g., Tesla T4) and memory for confirmation. All model tensors are moved to the GPU for training. If no GPU is available, it falls back to CPU (which will work, but training will be much slower).
+Running in Colab: The combination of these steps allows a user to simply open the notebook in Colab, run each cell in order, and train the models without any local configuration. The notebook prints progress at each stage (downloading data, preparing loaders, etc.) to guide the user through the process.
+Model Architectures
+We evaluate two CNN architectures and two Vision Transformer architectures, representing a mix of classic and cutting-edge deep learning models for image classification. All models are used with transfer learning: loaded with pre-trained ImageNet weights and then adapted to our 38-class problem. Below are the models and how they are set up:
+ResNet-50 (CNN): ResNet-50 is a 50-layer convolutional neural network with the hallmark residual skip connections. It is a powerful classic CNN that has about 23.5 million parameters. We load a pre-trained ResNet-50 and replace its final fully-connected layer (originally 1000 classes for ImageNet) with a new output layer of size 38 (matching the number of plant disease categories). The ResNet architecture extracts hierarchical features from images (edges, textures, shapes) and the new classification layer uses those features to predict disease classes.
+EfficientNet-B0 (CNN): EfficientNet-B0 is a modern CNN that was designed through neural architecture search to achieve high accuracy with fewer parameters. It has only about 4 million parameters, making it relatively lightweight. We use a pre-trained EfficientNet-B0 (from the timm library) and modify its classifier head to output 38 classes. Despite its small size, EfficientNet-B0 is very effective due to compound scaling (balancing network depth, width, and resolution). This model provides a strong baseline for efficiency and will be one of the CNNs we fine-tune on the plant disease data.
+ViT-Base/16 (Vision Transformer): ViT-Base (patch size 16) is a Vision Transformer model, roughly the "base" size version described in the original ViT paper. It treats an image as a sequence of patches (16×16 pixels each) and passes them through a Transformer encoder architecture. ViT-Base/16 is a large model with around 85 million parameters and 12 transformer layers. We load a pre-trained ViT-Base/16 and replace its classification head (often called head in the model) with a new feed-forward layer for 38-class output. The transformer model is powerful at capturing global relationships in the image, but typically requires a lot of data; by fine-tuning an ImageNet-pretrained ViT on PlantVillage, we aim to leverage its representational power for our task.
+DeiT-Small (Vision Transformer): DeiT-Small is a smaller vision transformer from Facebook's DeiT (Data-efficient Image Transformers), which introduced strategies to train ViTs effectively on standard ImageNet (without enormous extra data). DeiT-Small has about 22 million parameters, significantly fewer than ViT-Base, making it faster and lighter while still using the transformer architecture (patch-based input and self-attention mechanism). We use a pre-trained deit_small_patch16_224 model via timm and replace its classification head with a new one for our 38 classes. This model represents a transformer approach optimized for data efficiency, and we include it to see how a smaller ViT compares against ViT-Base and the CNNs.
+For each model, the notebook provides a creation function that leverages timm.create_model to load the architecture with pretrained=True and sets num_classes=38 to automatically configure the new classifier layer. After creation, we print out summary information such as the total number of parameters and ensure the model's output tensor matches the expected class count. All models are moved to the chosen device (GPU) for training. By comparing ResNet-50 vs EfficientNet-B0, and ViT-Base vs DeiT-Small, we cover both a range of CNN capacities and transformer capacities.
+Training Strategy
+Training these models on the plant disease dataset is done with a transfer learning strategy in two main phases. We use a consistent training pipeline for both the CNN and ViT models, with some adjustments for their different architectures:
+Phase 1 – Train New Classification Head: In the first phase, we freeze the pre-trained backbone of the network and train only the newly added classification head. This means for a CNN, all convolutional layers remain fixed (weights from ImageNet), and only the final fully-connected layer learns from scratch. For ViT models, all transformer encoder layers are frozen and only the final feed-forward classification head is trainable. We do this to initially focus on learning the specific plant disease classification task without drastically altering the pre-trained feature filters. Phase 1 typically lasts for a number of epochs (in our configuration, we set about 10 epochs for this head-only training).
+Phase 2 – Fine-tune Entire Model: After the head has learned to classify using the pre-existing features, we move to phase 2, which is fine-tuning the entire network. We unfreeze all layers of the model (convolutions or transformer blocks) so that the pre-trained weights can be slightly adjusted to better fit the plant disease data. This phase is run for more epochs (we configured ~20 additional epochs) but with a lower learning rate to avoid overwriting the useful learned features too quickly. Fine-tuning allows the model to improve further now that the new head is reasonably initialized from phase 1.
+Our training uses the following hyperparameters and techniques:
+Optimizer: We use Adam optimizer for training, which is well-suited for transfer learning. The initial learning rate in Phase 1 is set to 0.0003 (3×10^-4). Adam is configured with standard parameters (beta1=0.9, beta2=0.999, weight decay=1e-4) and we only pass it the parameters that are currently trainable (frozen layers are excluded).
+Learning Rate Schedule: A Cosine Annealing learning rate scheduler is employed to gradually decrease the learning rate over the course of training. With Cosine Annealing, the learning rate starts at the initial value (e.g., 3e-4) and is smoothly annealed towards a small eta_min (we use 1e-6) following a cosine curve as epochs progress. This helps the model converge more stably and often improves final performance. We apply this scheduler during each phase.
+Fine-tuning Learning Rate: When transitioning to Phase 2 (full fine-tuning), we use a smaller learning rate (we set 3e-5 as the base for fine-tuning) to avoid making large weight updates now that many more parameters are being updated. This lower LR, combined with the scheduler, helps preserve the previously learned features while still allowing improvement on the new task.
+Loss Function: The models are trained with Cross-Entropy Loss, the standard choice for multi-class classification. This loss compares the predicted class probabilities to the true class labels and guides the optimization.
+Metrics: We track accuracy (percentage of correct predictions) on both training and validation sets. Additionally, we compute Top-5 accuracy on validation/test sets for completeness (especially relevant if there were many classes; in our case with 38 classes, top-5 accuracy can indicate if the correct label is among the top predictions). However, primary focus is on top-1 accuracy.
+Early Stopping: To prevent overfitting and to save time, we implement an early stopping mechanism. If the validation loss does not improve for a certain number of epochs (patience = 5 epochs in our setup), training will stop early. The best model weights (with lowest validation loss) are restored. This ensures we don’t over-train the model on the training data once it stops generalizing better.
+Training Process: We train for up to 30 epochs in total (10 in phase 1 + ~20 in phase 2, if not stopped earlier). Each epoch consists of a training loop (forward pass, loss computation, backward pass, optimizer step for each batch) and a validation loop (where we evaluate the model on the validation set without gradients). The notebook prints periodic updates, such as the loss after every 100 batches, to show training progress. After each epoch, we record the training loss/accuracy and validation loss/accuracy, and adjust the learning rate via the scheduler.
+At the end of training, we evaluate the final selected models (one CNN and one ViT) on the held-out test set to measure their performance on unseen data. We do not include those final result numbers here, but metrics like test accuracy and confusion matrices are generated in the notebook to compare how the CNN vs the ViT performed in classifying plant diseases. Overall, this training strategy – freeze then fine-tune, with careful learning rate scheduling and early stopping – is aimed at getting the best out of the pre-trained models on a relatively smaller specialized dataset, while avoiding overfitting. By following the same approach for both CNN and ViT models, we can make a fair comparison of their learning behavior and performance on the plant disease task.
+How to Run
+To run this project in Google Colab, follow these steps:
+Open the Notebook: Access the Jupyter notebook (CMP719A_Project_Ali_SU.ipynb) in Google Colab. You can do this by uploading the notebook to Colab or using the Colab link if provided. Ensure you have logged into a Google account with Colab access.
+Enable GPU (Recommended): In Colab, go to the menu Runtime → Change runtime type, then select GPU as the hardware accelerator. This will significantly speed up model training.
+Install Dependencies: Run the initial setup cells. The first code cell installs required libraries (PyTorch, Torchvision, timm, etc.) and checks the environment. Simply execute it and wait for the "All libraries imported successfully!" confirmation in the output.
+Set Up Kaggle & Download Data: When you run the cell that begins the dataset setup (Step 2 in the notebook), it will prompt you to upload your Kaggle API token (kaggle.json). Upload your token file through the Colab file dialog. The notebook will then automatically configure the Kaggle API and download the PlantVillage dataset. Wait for the download and unzip to complete (it’s about 658 MB, containing 54k images).
+Prepare Data: The notebook will locate the dataset directory and create the train/validation/test splits. It will output the number of images and classes found, and show some sample class names. Simply run through these cells; no additional input is needed. A sample batch of images might be displayed to verify that data loading and transformations work correctly.
+Create Models: Execute the model creation section. The notebook will initialize ResNet-50, EfficientNet-B0, ViT-Base/16, and DeiT-Small with pre-trained weights. It will print a summary of each model (confirming the number of parameters and that the output layer is set to 38 classes). This step just sets up the models in memory.
+Train the Models: Run the training section. The code will first train the chosen CNN model and ViT model (by default, EfficientNet-B0 and ViT-B/16 are selected for full training after initial comparisons) using the two-phase strategy. You will see output for each epoch, including training/validation loss and accuracy. Training may take some time depending on the model and whether a GPU is enabled (for example, EfficientNet-B0 will train faster than ViT-B/16). Early stopping is active, so training might stop before the max epochs if the model converges early.
+Evaluate Results: After training, the notebook evaluates the trained models on the test set and (optionally) displays metrics like classification reports or confusion matrices. You can run those cells to see how well the models performed. This README does not contain the result numbers, but you can observe them directly in Colab after training completes.
+Throughout the process, ensure you run each cell in order. The notebook is designed to be self-contained; by following the sequential execution, you will replicate the entire pipeline of downloading data, preparing it, training models, and evaluating them. No local installation or GPU is required beyond the Colab environment.
+License
+This project’s code is released under the MIT License. You are free to use, modify, and distribute the code as permitted by the MIT License. Please note that the PlantVillage dataset used in this project is open-access (public domain/CC0) – you should ensure compliance with its terms if you reuse the data. For more details, see the LICENSE file included in the repository. The MIT License allows broad reuse, so feel free to build upon this work for your own projects.
+Author
+Ali SU – Hacettepe University, Department of Computer Engineering. This project was developed as part of a comparative study on vision transformers and CNNs for plant disease detection. If you have any questions or comments about the code or methodology, please feel free to reach out via the GitHub repository issues page.
